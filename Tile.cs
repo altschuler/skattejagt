@@ -5,6 +5,7 @@ namespace Skattejagt
 	Entry,
 	Wall,
 	Floor,
-	Treasure
+	Treasure,
+	Invalid
     } 
 }

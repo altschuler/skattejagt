@@ -14,6 +14,7 @@ namespace Skattejagt
 	    
 	    public Tile TileAt(int x, int y)
 	    {
+		if (x < 0 || y < 0 || x > this.Tiles[0].Count - 1 || y > this.Tiles.Count -1) return Tile.Invalid;
 	        return this.Tiles[y][x];
 	    }
 	    

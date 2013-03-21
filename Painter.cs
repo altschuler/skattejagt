@@ -6,11 +6,29 @@ namespace Skattejagt
   public static class Painter
   {
     public static void DrawKnowledgeBase(Graphics gfx, Map2 kb, float scale)
-    {
-	// Draw map of routes
-	var pen = new Pen(Color.Black) { Width = 5 };
+    {	
 	var offsetX = 20f;
 	var offsetY = 20f;
+
+	var brush = new SolidBrush(Color.FromArgb(150, 0, 255, 0));
+	var brushTreasure = new SolidBrush(Color.FromArgb(255, 255, 255, 0));
+	var brushEntry = new SolidBrush(Color.FromArgb(255, 0, 0, 255));
+	
+	foreach (var state in kb.States)
+	{
+	    var b = brush;
+	    if (state.Type.Equals(Tile.Treasure))
+		b = brushTreasure;
+
+	    if (state.Type.Equals(Tile.Entry))
+		b = brushEntry;
+
+	    gfx.FillRectangle(b, offsetX + (state.X * scale) - 10, offsetY + (state.Y * scale) - 10, 20, 20);
+	}
+	    
+
+	// Draw map of routes
+	var pen = new Pen(Color.Black) { Width = 2 };
 	foreach (var action in kb.Actions)
 	  gfx.DrawLine(pen, offsetX + action.StateA.X * scale, offsetY + action.StateA.Y * scale, offsetX + action.StateB.X * scale, offsetY + action.StateB.Y * scale);
 

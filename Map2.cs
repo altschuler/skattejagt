@@ -25,13 +25,13 @@ namespace Skattejagt
 		    // skip wall tiles
 		    if (tile.Equals(Tile.Wall)) continue;
 		    
-		    var state = kb.GetOrCreateState(i, j, tile, map);
+		    var state = kb.GetOrCreateState(j, i, tile, map);
 
 		    // adjacent tiles
-		    var n = kb.GetOrCreateState(i, j-1, map.TileAt(i, j-1), map);
-		    var e = kb.GetOrCreateState(i+1, j, map.TileAt(i+1, j), map);
-		    var s = kb.GetOrCreateState(i, j+1, map.TileAt(i, j+1), map);
-		    var w = kb.GetOrCreateState(i-1, j, map.TileAt(i-1, j), map);
+		    var n = kb.GetOrCreateState(j, i-1, map.TileAt(j, i-1), map);
+		    var e = kb.GetOrCreateState(j+1, i, map.TileAt(j+1, i), map);
+		    var s = kb.GetOrCreateState(j, i+1, map.TileAt(j, i+1), map);
+		    var w = kb.GetOrCreateState(j-1, i, map.TileAt(j-1, i), map);
 
 		    // actions between tile and adjacent
 		    var na = kb.GetOrCreateAction(state, n);
@@ -47,7 +47,7 @@ namespace Skattejagt
 	protected Action GetOrCreateAction(State a, State b)
 	{
 	    // no action to no state
-	    if (a == null || b == null) return null;
+	    if (a == null || b == null || a.Type == Tile.Wall || b.Type == Tile.Wall) return null;
 
 	    // check if action already exists
 	    var action = this.Actions.SingleOrDefault(act => (act.StateA.Equals(a) && act.StateB.Equals(b)) || (act.StateA.Equals(b) && act.StateB.Equals(a)));

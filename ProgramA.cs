@@ -18,21 +18,21 @@ namespace Skattejagt
 	    public ProgramA()
 	    {
 	        var map = Map.Parse(@"########
+#  $   #    
 #      #    
-#      #    
- #######    
-########    
-#      #    
+I  #####    
+#  # $ #    
+#  ### #    
 #      #    
 ########    ");
 	        var amount = 0;
 	        foreach (var row in map.Tiles)
 	        {
-	    	foreach (var tile in row)
-	    	{
-	    	    if (tile.Equals(Tile.Treasure)) 
-	    		amount++;
-	    	}
+		    foreach (var tile in row)
+		    {
+			if (tile.Equals(Tile.Treasure)) 
+			    amount++;
+		    }
 	        }
 	        
 	        this.kb = Map2.Parse(map);

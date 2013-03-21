@@ -13,6 +13,7 @@ namespace Skattejagt
 	var brush = new SolidBrush(Color.FromArgb(150, 0, 255, 0));
 	var brushTreasure = new SolidBrush(Color.FromArgb(255, 255, 255, 0));
 	var brushEntry = new SolidBrush(Color.FromArgb(255, 0, 0, 255));
+	var brushWall = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
 	
 	foreach (var state in kb.States)
 	{
@@ -22,6 +23,9 @@ namespace Skattejagt
 
 	    if (state.Type.Equals(Tile.Entry))
 		b = brushEntry;
+
+	    if (state.Type.Equals(Tile.Wall))
+		b = brushWall;
 
 	    gfx.FillRectangle(b, offsetX + (state.X * scale) - 10, offsetY + (state.Y * scale) - 10, 20, 20);
 	}

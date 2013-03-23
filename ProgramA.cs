@@ -12,16 +12,16 @@ namespace Skattejagt
 
 	public ProgramA()
 	{
-	    var mapString = @"########
-#    $ #    
-#   $  #    
-I  #####    
-#  # $ #    
-#$ ### #    
-#      #    
-########";
+//	    var mapString = @"########
+//#    $ #    
+//#   $  #    
+//I  #####    
+//#  # $ #    
+//#$ ### #    
+//#      #    
+//########";
 
-//	    var mapString = Helper.GetInput();
+	    var mapString = Helper.GetInput();
 	    // O(n^2)
 	    var amount = 0;
 	    foreach (var c in mapString)

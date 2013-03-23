@@ -17,5 +17,10 @@ namespace Skattejagt
             this.Y = y;
             this.Type = type;
         }
+
+	public override string ToString()
+	{
+	    return String.Format("{0} ({1},{2})", this.Type, this.X, this.Y);
+	}
     }
 }

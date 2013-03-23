@@ -8,46 +8,30 @@ namespace Skattejagt
 {
     public class ProgramA : Form
     {
-	    public static void Main()
-	    {
-		Application.Run(new ProgramA());
-	    }
-	    
-        public Map2 kb;
+	public static void Main()
+	{
+	    Application.Run(new ProgramA());
+	}
 
-	    public ProgramA()
-	    {
-	        var map = Map.Parse(@"########
-#  $   #    
-#      #    
+	public ProgramA()
+	{
+	    var map = Map.Parse(@"########
+#    $ #    
+#   $  #    
 I  #####    
 #  # $ #    
-#  ### #    
+#$ ### #    
 #      #    
-########    ");
-	        var amount = 0;
-	        foreach (var row in map.Tiles)
-	        {
-		    foreach (var tile in row)
-		    {
-			if (tile.Equals(Tile.Treasure)) 
-			    amount++;
-		    }
-	        }
-	        
-	        this.kb = Map2.Parse(map);
+########");
+
+	    // O(n^2)
+	    var amount = 0;
+	    foreach (var row in map.Tiles)
+		foreach (var tile in row)
+		    if (tile.Equals(Tile.Treasure)) 
+			amount++;
 	    
-	        Console.WriteLine(String.Format("Amount of treasures: {0}", amount));
-	    
-	        // Troll
-	        Console.WriteLine(String.Format("Amount of treasures (LINQ): {0}", map.Tiles.SelectMany(x => x).Where(t => t.Equals(Tile.Treasure)).Count()));
-	    
-	     	this.Paint += new PaintEventHandler(this.OnPaint);	        
-	    }
-	    
-	    private void OnPaint(object sender, PaintEventArgs args)
-	    {	    
-	        Painter.DrawKnowledgeBase(args.Graphics, this.kb, 20f);
-	    }
+	    Console.WriteLine(String.Format("Amount of treasures: {0}", amount));
+	}
     }
 }

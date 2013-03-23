@@ -41,8 +41,6 @@ namespace Skattejagt
 			frontier.Add(childB);
 		}
 	    }
-
-	    Console.WriteLine("No route found");
 	    return null;
 	}
     }

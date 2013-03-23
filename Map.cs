@@ -20,6 +20,7 @@ namespace Skattejagt
 	    
 	    public List<Tile> Row(int index)
 	    {
+		if (index >= this.Tiles.Count) return null;
 	        return this.Tiles[index];
 	    }
 	    

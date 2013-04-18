@@ -18,13 +18,13 @@ namespace Skattejagt
 	    public ProgramB()
 	    {
 		var mapString = 
-@"########
-#    $ #    
-## $ $ #    
-I  #####    
-#    $ #    
-#  ### #    
-#      #    
+@"###I####
+#$#    #
+# ####$#
+#  $   #
+#### $ #
+#$ #   #
+# $# $ #
 ########";
 	        var map = Map.Parse(mapString);
 	        this.kb = MapGraph.Parse(map);

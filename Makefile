@@ -1,3 +1,19 @@
+tcd:
+	mcs -debug TreasureC.cs Helper.cs
+	mono --debug TreasureC.exe
+
+tc:
+	mcs TreasureC.cs Helper.cs
+	mono TreasureC.exe
+
+tbd:
+	mcs -debug TreasureB.cs Helper.cs
+	mono --debug TreasureB.exe
+
+tb:
+	mcs TreasureB.cs Helper.cs
+	mono TreasureB.exe
+
 REFS = -r:System.Windows.Forms -r:System.Drawing
 
 # A
@@ -22,7 +38,7 @@ bzip:
 	zip ProgramB $(BFILES)
 
 bpaint:
-	mcs $(REFS) PaintProgramB.cs $(filter-out $(wildcard Program*.cs), $(wildcard *.cs))
+	mcs $(REFS) PaintProgramB.cs $(filter-out $(wildcard Program*.cs Treasure*.cs), $(wildcard *.cs))
 	mono PaintProgramB.exe
 
 # C

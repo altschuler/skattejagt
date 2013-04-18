@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.IO;
 
 namespace Skattejagt
 {
@@ -12,11 +13,14 @@ namespace Skattejagt
 
 	public ProgramC()
 	{
-	    var mapString =  @"##I$#";
+//	    var mapString = File.ReadAllText("map.txt");
+	    var mapString = File.ReadAllText("map.txt");
 	    //var mapString = Helper.GetInput();
 	    
 	    var map = Map.Parse(mapString);
+	    Console.WriteLine("map parsed");
 	    var graph = MapGraph.Parse(map);
+	    Console.WriteLine("graph parsed");
 	    if (graph.Entries.Count == 0) return;
 	    var traceNode = BFSearch.Search(graph.States, graph.Actions, graph.Entries[0], Tile.Treasure);
 	    

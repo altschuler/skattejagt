@@ -4,20 +4,19 @@ using System.Linq;
 
 namespace Skattejagt
 {
-    public class MapGraph
+    public class MapGraph2
     {
 	public List<Action> Actions { get; set; }
 	public List<State> States { get; set; }
 
-	public static MapGraph Parse(Map map)
+	public static MapGraph2 Parse(Map map)
 	{
-	    var kb = new MapGraph();
+	    var kb = new MapGraph2();
 	    kb.Actions = new List<Action>();
 	    kb.States = new List<State>();
 	    
 	    for (var i = 0; i < map.Tiles.Count; i++)
 	    {
-		Console.WriteLine(i);
 		var row = map.Tiles[i];
 		for (var j = 0; j < row.Count; j++)
 		{
@@ -35,6 +34,7 @@ namespace Skattejagt
 		    var w = kb.GetOrCreateState(j-1, i, map.TileAt(j-1, i), map);
 
 		    // actions between tile and adjacent
+		    // TODO why opposite N/S?
 		    kb.GetOrCreateAction(state, n, "N");
 		    kb.GetOrCreateAction(state, e, "E");
 		    kb.GetOrCreateAction(state, s, "S");
@@ -67,7 +67,7 @@ namespace Skattejagt
 	    if (a == null || b == null || a.Type == Tile.Wall || b.Type == Tile.Wall) return null;
 
 	    // check if action already exists
-	    var action = this.Actions.SingleOrDefault(act => act.StateA.Equals(a) && act.StateB.Equals(b));
+	    var action = this.Actions.SingleOrDefault(act => (act.StateA.Equals(a) && act.StateB.Equals(b)) || (act.StateA.Equals(b) && act.StateB.Equals(a)));
 	    if (action == null)
 	    {
 		action = new Action(a, b, name);
